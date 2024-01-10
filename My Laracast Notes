@@ -1,0 +1,200 @@
+
+To start server
+php -S localhost:8888 
+
+Variable
+$this = variable
+
+This is a $this;
+
+You have to use double quotes if you have a variable in there
+single quote will show you whats in there with $
+
+conditionals
+if else
+<?= ?>
+same as
+<?php echo ?>
+
+<?php
+		$name = "Dark Matter";
+		$read = true;
+
+		if ("$read") {
+			$message = "You have read $name";
+		} else {
+			$message = "You have not read $name";
+
+		}
+	?>
+
+		<?= $message ?>
+	<br>
+	<?= "Hello World"; ?>
+
+
+	Arrays
+
+	<h1>Good Books</h1>
+
+<?php 
+
+	$books = [
+		"Dangus",
+		"Do Androids Dream of Electric Sheep",
+		"The Langoliers",
+	];
+?>
+
+<ul>
+	<?php foreach ($books as $book) : ?>
+		<li><?= $book ?></li>
+	<?php endforeach; ?>
+</ul>
+
+
+If in an array and you only want one specific item
+
+$books [1] or $books [2]
+
+
+Associative Arrays
+allows you to reference one part of an array
+You put an array in an array
+
+$books = [
+	[
+		'name' => 'Do Androids Dream of Electric Sheep',
+		'author' => 'Philip K. Dick', 
+		'purchaseUrl' => 'google.com',
+		'releaseYear' => '1999'
+	],
+
+	[
+		'name' => 'Project Hail Mary',
+		'author' => 'Andy Weir',
+		'purchaseUrl' => 'google.com',
+		'releaseYear' => '1989'
+	],
+];
+
+?>
+
+	<ul>
+		<?php foreach ($books as $book) : ?>
+
+		<li>
+			<a href="<?= $book['purchaseUrl'] ?>">
+			<?= $book['name']; ?> (<?= $book ['releaseYear']; ?>)
+			</a>	
+
+		</li>
+
+		<?php endforeach; ?>
+	</ul>
+
+
+	Functions and Filters
+	Functions are verbs of programming. be called, do something and then return results
+
+	nice way to include complex code in a neat function
+
+	Single = when you want to assign a value. 
+	Triple === when you want to check quality
+
+	<?php foreach ($books as $book) : ?>
+			<?php if ($book['author'] === 'Andy Weir') : ?>
+
+		<li>
+			<a href="<?= $book['purchaseUrl'] ?>">
+			<?= $book['name']; ?> (<?= $book ['releaseYear']; ?>) By <?= $book['author'] ?>
+			</a>	
+
+		</li>
+			<?php endif; ?>
+		<?php endforeach; ?>
+
+		function filterByAuthor() {
+			return 
+		}
+
+		filterByAuthor(); 	// calls function // 
+
+
+
+		function filterByAuthor($books) {
+	$filteredBooks = [];   // this is a new array creating
+
+	// here it is receiving all of the info in $books //
+
+	foreach ($books as $book) {   // loop through books we gave it
+		if ($book['author'] === 'Andy Weir') {    // check the author of each item in array
+			$filteredBooks[] = $book; // then add the book to a new array
+		}
+	}
+
+<ul>
+		<?php foreach (filterByAuthor($books) as $book) : ?>  // call the function here in loop. 
+			
+
+		<li>
+			<a href="<?= $book['purchaseUrl'] ?>">
+				<?= $book['name']; ?> (<?= $book ['releaseYear']; ?>) By <?= $book['author'] ?>
+			</a>	
+
+		</li>
+			
+		<?php endforeach; ?>
+	</ul>
+
+
+	Lambda Functions ////
+
+	You can have anonymous function. You can assign it to variable or pass it to other functions
+
+
+
+	// Connect to our MYSQL database
+
+
+$dsn = "mysql:host=localhost;port=3306;dbname=myapp;charset=utf8mb4";
+$pdo = new PDO($dsn, 'root');
+$statement = $pdo->prepare("select * from posts where id = 1");
+$statement->execute();
+
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+// dd($posts);
+
+foreach ($posts as $post) {
+	echo "<li>" . $post['title'] . "</li>";
+}
+
+// echo "<li>" . $post['title'] . "</li>";
+
+
+
+Methods are verbs of prgram world 
+Class - follow the nouns
+
+Connect to database and execute query
+
+class Database {
+public function query()
+	{
+
+	}
+}
+
+$db = new Database();
+
+$db->query();
+
+never inline user data into a query string
+
+
+
+
+
+
+
